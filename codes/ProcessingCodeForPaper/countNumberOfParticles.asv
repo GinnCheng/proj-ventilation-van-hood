@@ -1,0 +1,23 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% script to plot particles clearance
+ %  coded by ginn
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+clear all; close all; clc;
+addpath('D:\kevinProject\postProcessing\00function')
+folder_loc  = 'G:\ventilation_hood_project\dispersion\low_resolution\';
+case_loc    = 'G:\ventilation_hood_project\dispersion\low_resolution\neb_fan_inc_lres';
+
+%% get the number of particles
+%%% select section
+xlim = [-2 2];
+ylim = [0 3];
+zlim = [2.95 3.05];
+[t,num_floating,num_remain,num_suction] = arbitraryLocCountFloatingParticles(folder_loc,case_loc,xlim,ylim,zlim);
+t = t-60;
+%% now plot the number of particles decays
+% figure
+percentage_particles = num_remain./num_floating(1);
+
+%% plot the decay vs. fan rate at each clearance rate
+% time_clearance_vs_fan_rate(t,percentage_particles_50,percentage_particles_67,percentage_particles_80,percentage_particles_org)
+% print(gcf,'C:\Users\Gene\Dropbox\ventilation hood project\figures\DecayFitting_vs_fan_rate','-dpng','-r1200');
